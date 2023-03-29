@@ -1,11 +1,11 @@
-#include "main.h"
+ï»¿#include "main.h"
 #include "Windows.h"
 
 #define MIN_NUMBER 1
 #define MAX_NUMBER 9
 
-#define ERROR_INT "ERROR! Wrong int value (îøèáî÷íîå öåëî÷èñëåííîå çíà÷åíèå). Try again..."
-#define ERROR_MSG "ERROR! Wrong answer (íåïðàâèëüíûé îòâåò). Try again..."
+#define ERROR_INT "ERROR! Wrong int value (Ã®Ã¸Ã¨Ã¡Ã®Ã·Ã­Ã®Ã¥ Ã¶Ã¥Ã«Ã®Ã·Ã¨Ã±Ã«Ã¥Ã­Ã­Ã®Ã¥ Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¥). Try again..."
+#define ERROR_MSG "ERROR! Wrong answer (Ã­Ã¥Ã¯Ã°Ã Ã¢Ã¨Ã«Ã¼Ã­Ã»Ã© Ã®Ã²Ã¢Ã¥Ã²). Try again..."
 
 int rand_number(int a, int b) {
 	if (a > b) {
@@ -61,6 +61,7 @@ int read_int(string prompt) {
 
 int main() {
 	srand(time(NULL));
+	
 	setlocale(LC_ALL, "Russian");
 
 	char answer;
@@ -71,12 +72,12 @@ int main() {
 		cout << "Exercises that you perform for just 2-5 minutes every day";
 		cout << "\nhelp to actively develop your memory, thinkingand attention.";
 
-		cout << "\n\nÓïðàæíåíèÿ, êîòîðûå Âû âûïîëíÿåòå âñåãî 2-5 ìèíóò êàæäûé äåíü,";
-		cout << "\nïîìîãàþò àêòèâíî ðàçâèâàòü Âàøó ïàìÿòü ìûøëåíèå è âíèìàíèå.\n";
+		cout << "\n\nÐ£Ð¿Ñ€Ð°Ð¶Ð½ÐµÐ½Ð¸Ñ, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ð’Ñ‹ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚Ðµ Ð²ÑÐµÐ³Ð¾ 2-5 Ð¼Ð¸Ð½ÑƒÑ‚ ÐºÐ°Ð¶Ð´Ñ‹Ð¹ Ð´ÐµÐ½ÑŒ,";
+		cout << "\nÐ¿Ð¾Ð¼Ð¾Ð³Ð°ÑŽ Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾ Ñ€Ð°Ð·Ð²Ð¸Ð²Ð°Ñ‚ÑŒ Ð¿Ð°Ð¼ÑÑ‚ÑŒ, Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð¸Ðµ Ð¸ Ð²Ð½Ð¸Ð¼Ð°Ð½Ð¸Ðµ.\n";
 
-		int number = read_int("\nInput number of exercise (êîëè÷åñòâî ðåøàåìûõ ïðèìåðîâ): ");
+		int number = read_int("\nInput number of exercise (ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ€ÐµÑˆÐ°ÐµÐ¼Ñ‹Ñ… Ð¿Ñ€Ð¸Ð¼ÐµÑ€Ð¾Ð²): ");
 
-		cout << "\nLet's do it (ñäåëàåì ýòî)!" << endl;
+		cout << "\nLet's do it (ÑÐ´ÐµÐ»Ð°ÐµÐ¼ ÑÑ‚Ð¾)!" << endl;
 		long start_time = time(NULL);
 		cout << "\nSTART time: " + convert_to_string(start_time) << "\n\n";
 
@@ -116,10 +117,10 @@ int main() {
 		long finish_time = time(NULL);
 		cout << "\nFINISH time: " + convert_to_string(finish_time) << endl;
 
-		cout << "\nYour TOTAL time for exercises: " + convert_to_string(finish_time - start_time) << endl;
+		cout << "\nYour TOTAL time for exercises (Ð’Ð°ÑˆÐµ Ð¾Ð±Ñ‰ÐµÐµ Ð²Ñ€ÐµÐ¼Ñ): " + convert_to_string(finish_time - start_time) << endl;
 
 		cin.ignore();
-		cout << "\nTry again (ïîïðîáóåì åù¸)? (y/n)";
+		cout << "\nTry again (Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐµÐ¼ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·)? (y/n)";
 		answer = _getch();
 
 		answer = tolower(answer);
@@ -130,8 +131,8 @@ int main() {
 
 	cout << "\nDo not forget about daily training to develop your intellect.";
 	cout << "\nNo excuses... ";
-	cout << "\nÍå çàáûâàéòå î åæåäíåâíûõ òðåíèðîâêàõ äëÿ ðàçâèòèÿ ñâîåãî èíòåëëåêòà.";
-	cout << "\nÍèêàêèõ îïðàâäàíèé!";
+	cout << "\nÐÐµ Ð·Ð°Ð±Ñ‹Ð²Ð°Ð¹Ñ‚Ðµ Ð¾ ÐµÐ¶ÐµÐ´Ð½ÐµÐ²Ð½Ñ‹Ñ… Ñ‚Ñ€ÐµÐ½Ð¸Ñ€Ð¾Ð²ÐºÐ°Ñ… Ð´Ð»Ñ Ñ€Ð°Ð·Ð²Ð¸Ñ‚Ð¸Ñ ÑÐµÐ±Ñ Ð¸ ÑÐ²Ð¾ÐµÐ³Ð¾ Ð¸Ð½Ñ‚ÐµÐ»Ð»ÐµÐºÑ‚Ð°.";
+	cout << "\nÐÐ¸ÐºÐ°ÐºÐ¸Ñ… Ð¾Ð¿Ñ€Ð°Ð²Ð´Ð°Ð½Ð¸Ð¹!";
 	cout << "\n\nSee you... :)\n\n";
 
 	return 0;
