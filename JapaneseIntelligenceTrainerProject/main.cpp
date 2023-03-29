@@ -1,16 +1,15 @@
 #include "main.h"
 #include "Windows.h"
 
-#define MIN_NUMBER 0
+#define MIN_NUMBER 1
 #define MAX_NUMBER 9
 
-#define ERROR_INT "ERROR! Wrong int value. Try again..."
-#define ERROR_MSG "ERROR! Wrong answer. Try again..."
-
+#define ERROR_INT "ERROR! Wrong int value (ошибочное целочисленное значение). Try again..."
+#define ERROR_MSG "ERROR! Wrong answer (неправильный ответ). Try again..."
 
 int rand_number(int a, int b) {
 	if (a > b) {
-		int t = a; 
+		int t = a;
 		a = b;
 		b = t;
 	}
@@ -62,50 +61,78 @@ int read_int(string prompt) {
 
 int main() {
 	srand(time(NULL));
+	setlocale(LC_ALL, "Russian");
 
-	int number = read_int("Input number of exercise: ");
-	
-	cout << "\nLet's do it... " << endl;
-	long start_time = time(NULL);
-	cout << "\nSTART time: " + convert_to_string(start_time) << endl;
-	
-	int error = 0;
-	int count = 0;
+	char answer;
 
-	for (int i = 0; i < number; i++)
-	{
-		int a = rand_number(MIN_NUMBER, MAX_NUMBER);
-		int b = rand_number(MIN_NUMBER, MAX_NUMBER);
-		
-		bool operation = rand_operation();
-				
-		if (a < b && !operation) {
-			int t = a;
-			a = b;
-			b = t;
+	do {
+		system("cls");
+
+		cout << "Exercises that you perform for just 2-5 minutes every day";
+		cout << "\nhelp to actively develop your memory, thinkingand attention.";
+
+		cout << "\n\nУпражнения, которые Вы выполняете всего 2-5 минут каждый день,";
+		cout << "\nпомогают активно развивать Вашу память мышление и внимание.\n";
+
+		int number = read_int("\nInput number of exercise (количество решаемых примеров): ");
+
+		cout << "\nLet's do it (сделаем это)!" << endl;
+		long start_time = time(NULL);
+		cout << "\nSTART time: " + convert_to_string(start_time) << "\n\n";
+
+		int error = 0;
+		int count = 0;
+
+		for (int i = 0; i < number; i++)
+		{
+			int a = rand_number(MIN_NUMBER, MAX_NUMBER);
+			int b = rand_number(MIN_NUMBER, MAX_NUMBER);
+
+			bool operation = rand_operation();
+
+			if (a < b && !operation) {
+				int t = a;
+				a = b;
+				b = t;
+			}
+
+			string msg = to_string(i + 1) + ") ";
+			msg += to_string(a);
+			msg += operation ? " + " : " - ";
+			msg += to_string(b) + " = ";
+
+			int result = operation ? a + b : a - b;
+			int answer;
+
+			do {
+				answer = read_int(msg);
+				if (answer != result) {
+					cout << ERROR_MSG << endl;
+				}
+			} while (answer != result);
 		}
 
-		string msg = to_string(i + 1) + ") ";
-		msg += to_string(a);
-		msg += operation ? " + " : " - ";
-		msg += to_string(b) + " = ";
 
-		int result = operation ? a + b : a - b;
-		int answer;
+		long finish_time = time(NULL);
+		cout << "\nFINISH time: " + convert_to_string(finish_time) << endl;
 
-		do {
-			answer = read_int(msg);
-			if (answer != result) {
-				cout << ERROR_MSG << endl;
-			}
-		} while (answer != result);
-	}
+		cout << "\nYour TOTAL time for exercises: " + convert_to_string(finish_time - start_time) << endl;
 
+		cin.ignore();
+		cout << "\nTry again (попробуем ещё)? (y/n)";
+		answer = _getch();
 
-	long finish_time = time(NULL);
-	cout << "\nFINISH time: " + convert_to_string(finish_time) << endl;
+		answer = tolower(answer);
 
-	cout << "\nYour TOTAL time for exercises: " + convert_to_string(finish_time - start_time) << endl;
+	} while (answer == 'y');
+
+	system("cls");
+
+	cout << "\nDo not forget about daily training to develop your intellect.";
+	cout << "\nNo excuses... ";
+	cout << "\nНе забывайте о ежедневных тренировках для развития своего интеллекта.";
+	cout << "\nНикаких оправданий!";
+	cout << "\n\nSee you... :)\n\n";
 
 	return 0;
 }
