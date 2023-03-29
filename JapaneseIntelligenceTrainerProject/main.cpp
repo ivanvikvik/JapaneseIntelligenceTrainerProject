@@ -1,11 +1,10 @@
 ﻿#include "main.h"
-#include "Windows.h"
 
 #define MIN_NUMBER 1
 #define MAX_NUMBER 9
 
-#define ERROR_INT "ERROR! Wrong int value (îøèáî÷íîå öåëî÷èñëåííîå çíà÷åíèå). Try again..."
-#define ERROR_MSG "ERROR! Wrong answer (íåïðàâèëüíûé îòâåò). Try again..."
+#define ERROR_INT "ERROR! Wrong int value (ошибка ввода целочисленного значения). Try again..."
+#define ERROR_MSG "ERROR! Wrong answer (неправильный ответ). Try again..."
 
 int rand_number(int a, int b) {
 	if (a > b) {
@@ -61,10 +60,10 @@ int read_int(string prompt) {
 
 int main() {
 	srand(time(NULL));
-	
-	setlocale(LC_ALL, "Russian");
 
-	char answer;
+	setlocale(LC_ALL, "Rus");
+
+	char yesno;
 
 	do {
 		system("cls");
@@ -87,7 +86,16 @@ int main() {
 		for (int i = 0; i < number; i++)
 		{
 			int a = rand_number(MIN_NUMBER, MAX_NUMBER);
+
 			int b = rand_number(MIN_NUMBER, MAX_NUMBER);
+			while (b == a) {
+				b = rand_number(MIN_NUMBER, MAX_NUMBER);
+			}
+			
+			int c = rand_number(MIN_NUMBER, MAX_NUMBER);
+			while (c == a || c == b) {
+				c = rand_number(MIN_NUMBER, MAX_NUMBER);
+			}
 
 			bool operation = rand_operation();
 
@@ -97,12 +105,28 @@ int main() {
 				b = t;
 			}
 
+			int result = operation ? a + b - c : a - b + c;
+
+			if (result < 0) {
+				int t = b;
+				b = c;
+				c = t;
+
+				result = operation ? a + b - c : a - b + c;
+			}
+
 			string msg = to_string(i + 1) + ") ";
 			msg += to_string(a);
-			msg += operation ? " + " : " - ";
-			msg += to_string(b) + " = ";
 
-			int result = operation ? a + b : a - b;
+			if (operation) {
+				msg += " + " + to_string(b) + " - ";
+			}
+			else {
+				msg += " - " + to_string(b) + " + ";
+			}
+			
+			msg += to_string(c) + " = ";
+			
 			int answer;
 
 			do {
@@ -113,7 +137,6 @@ int main() {
 			} while (answer != result);
 		}
 
-
 		long finish_time = time(NULL);
 		cout << "\nFINISH time: " + convert_to_string(finish_time) << endl;
 
@@ -121,11 +144,11 @@ int main() {
 
 		cin.ignore();
 		cout << "\nTry again (попробуем ещё раз)? (y/n)";
-		answer = _getch();
+		yesno = _getch();
 
-		answer = tolower(answer);
+		yesno = tolower(yesno);
 
-	} while (answer == 'y');
+	} while (yesno == 'y');
 
 	system("cls");
 
