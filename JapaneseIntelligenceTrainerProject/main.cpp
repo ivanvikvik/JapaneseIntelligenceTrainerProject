@@ -69,7 +69,7 @@ int main() {
 		system("cls");
 
 		cout << "Exercises that you perform for just 2-5 minutes every day";
-		cout << "\nhelp to actively develop your memory, thinkingand attention.";
+		cout << "\nhelp to actively develop your memory, thinking and attention.";
 
 		cout << "\n\nУпражнения, которые Вы выполняете всего 2-5 минут каждый день,";
 		cout << "\nпомогаю активно развивать память, мышление и внимание.\n";
