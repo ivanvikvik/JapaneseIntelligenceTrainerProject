@@ -1,62 +1,19 @@
-﻿#include "main.h"
+﻿#include <iostream>
+#include <string>
+#include <ctime>
+#include <conio.h>
 
 #define MIN_NUMBER 1
 #define MAX_NUMBER 9
 
-#define ERROR_INT "ERROR! Wrong int value (ошибка ввода целочисленного значения). Try again..."
 #define ERROR_MSG "ERROR! Wrong answer (неправильный ответ). Try again..."
 
-int rand_number(int a, int b) {
-	if (a > b) {
-		int t = a;
-		a = b;
-		b = t;
-	}
-	return rand() % (b + 1 - a) + a;
-}
+using namespace std;
 
-bool rand_operation() {
-	return rand() % 2;
-}
-
-string convert_to_string(long time) {
-	int hour = time / 3600 % 24;
-	int min = time % 3600 / 60;
-	int sec = time % 60;
-
-	string stime = to_string(hour);
-	stime += (min > 9 ? ":" : ":0") + to_string(min);
-	stime += (sec > 9 ? ":" : ":0") + to_string(sec);
-
-	return stime;
-}
-
-int read_int(string prompt) {
-	string input;
-
-	while (true) {
-		bool flag = true;
-
-		cout << prompt;
-		cin >> input;
-
-		for (int i = 0; i < input.size(); i++)
-		{
-			if (!isdigit(input[i])) {
-				cout << ERROR_INT << endl;
-				flag = false;
-				break;
-			}
-		}
-
-		if (flag) {
-			break;
-		}
-	}
-
-	return stoi(input);
-}
-
+int rand_number(int, int);
+bool rand_operation();
+int read_int(string);
+string convert_to_string(long, bool);
 
 int main() {
 	srand(time(NULL));
@@ -78,7 +35,7 @@ int main() {
 
 		cout << "\nLet's do it (сделаем это)!" << endl;
 		long start_time = time(NULL);
-		cout << "\nSTART time: " + convert_to_string(start_time) << "\n\n";
+		cout << "\nSTART time (стартовое время): " + convert_to_string(start_time, true) << "\n\n";
 
 		int error = 0;
 		int count = 0;
@@ -138,25 +95,24 @@ int main() {
 		}
 
 		long finish_time = time(NULL);
-		cout << "\nFINISH time: " + convert_to_string(finish_time) << endl;
+		cout << "\nFINISH time (финишное время): " + convert_to_string(finish_time, true) << endl;
 
-		cout << "\nYour TOTAL time for exercises (Ваше общее время): " + convert_to_string(finish_time - start_time) << endl;
+		cout << "\nYour TOTAL time for exercises (Ваше общее время): " 
+			+ convert_to_string(finish_time - start_time, false) << endl;
 
 		cin.ignore();
 		cout << "\nTry again (попробуем ещё раз)? (y/n)";
-		yesno = _getch();
-
-		yesno = tolower(yesno);
+		yesno = tolower(_getch());
 
 	} while (yesno == 'y');
 
 	system("cls");
 
 	cout << "\nDo not forget about daily training to develop your intellect.";
-	cout << "\nNo excuses... ";
+	cout << "\nNo excuses!!! ";
 	cout << "\nНе забывайте о ежедневных тренировках для развития себя и своего интеллекта.";
-	cout << "\nНикаких оправданий!";
-	cout << "\n\nSee you... :)\n\n";
+	cout << "\nНикаких оправданий!!!";
+	cout << "\n\nSee you (увидимся ещё) ... :)\n\n";
 
 	return 0;
 }
