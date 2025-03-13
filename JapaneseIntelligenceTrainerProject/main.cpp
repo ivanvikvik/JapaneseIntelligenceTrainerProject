@@ -2,6 +2,7 @@
 #include <string>
 #include <ctime>
 #include <conio.h>
+#include <Windows.h>
 
 #define MIN_NUMBER 1
 #define MAX_NUMBER 9
@@ -18,7 +19,9 @@ string convert_to_string(long, bool);
 int main() {
 	srand(time(NULL));
 
-	setlocale(LC_ALL, "Rus");
+	//SetConsoleOutputCP(1251);
+	//SetConsoleOutputCP(65001);
+	setlocale(LC_ALL, "");
 
 	char yesno;
 
@@ -73,15 +76,11 @@ int main() {
 			}
 
 			string msg = to_string(i + 1) + ") ";
-			msg += to_string(a);
 
-			if (operation) {
-				msg += " + " + to_string(b) + " - ";
-			}
-			else {
-				msg += " - " + to_string(b) + " + ";
-			}
-			
+			msg += to_string(a);
+			msg += operation ? " + " : " - ";			
+			msg += to_string(b);
+			msg += operation ? " - " : " + ";
 			msg += to_string(c) + " = ";
 			
 			int answer;
